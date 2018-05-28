@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">FGCKit Sample</string>
+    <string name="load_stories">Load Stories</string>
+    <string name="could_not_load_story">Could not load story</string>
+</resources>
