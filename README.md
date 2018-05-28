@@ -21,7 +21,7 @@ allprojects {
 }
 ```
 
-In your application gradle file add the dependency:
+In your application build.gradle file add the dependency:
 
 ```
  implementation 'com.github.fatgingercat:FGCKit-Android:0.0.6'
@@ -33,3 +33,21 @@ Add permission for internet access:
 ```
  <uses-permission android:name="android.permission.INTERNET"/>
 ```
+
+The FGCKit only supports landscape mode so be sure to include ```android:screenOrientation="landscape"``` in the activity that's using the Kit.
+
+### Proguard
+
+If you're applying obfuscation to your application be sure to add the following to your proguard-rules.pro file:
+```
+-dontwarn retrofit2.Platform$Java8
+-keepattributes Signature
+-keepattributes Exceptions
+
+-dontwarn okhttp3.**
+-dontwarn okio.**
+-dontwarn javax.annotation.**
+
+-keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
+```
+
