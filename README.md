@@ -24,7 +24,7 @@ allprojects {
 In your application build.gradle file add the dependency:
 
 ```
- implementation 'com.github.fatgingercat:FGCKit-Android:0.0.6'
+ implementation 'com.github.fatgingercat:FGCKit-Android:1.0.2.1'
 ```
 
 ### Android Manifest
