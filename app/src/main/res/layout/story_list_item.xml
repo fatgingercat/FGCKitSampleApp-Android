@@ -1,26 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_margin="16dp"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp">
 
-    <com.facebook.drawee.view.SimpleDraweeView
+    <ImageView
         android:id="@+id/story_list_item_cover_image"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        app:placeholderImage="@drawable/ic_book_black"
-        android:padding="12dp" />
+        android:layout_width="@dimen/story_thumb_size"
+        android:layout_height="@dimen/story_thumb_size"
+        android:background="@android:color/holo_red_dark"
+        tools:src="@drawable/red_rectangle" />
 
     <TextView
         android:id="@+id/story_list_item_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        tools:text="TextView"
-        app:layout_constraintTop_toBottomOf="@id/story_list_item_cover_image"
-        app:layout_constraintStart_toStartOf="@id/story_list_item_cover_image" />
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@id/story_list_item_cover_image"
+        app:layout_constraintStart_toStartOf="@id/story_list_item_cover_image"
+        app:layout_constraintTop_toTopOf="@id/story_list_item_cover_image"
+        tools:text="new story" />
+
+    <TextView
+        android:id="@+id/story_list_item_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="@id/story_list_item_cover_image"
+        app:layout_constraintStart_toStartOf="@id/story_list_item_cover_image"
+        app:layout_constraintTop_toBottomOf="@id/story_list_item_name"
+        tools:text="Luida Test" />
 
 </android.support.constraint.ConstraintLayout>

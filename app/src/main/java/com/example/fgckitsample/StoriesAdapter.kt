@@ -1,13 +1,14 @@
 package com.example.fgckitsample
 
-import android.net.Uri
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import cat.fatginger.fgckit.model.Story
-import com.facebook.drawee.view.SimpleDraweeView
+import cat.fatginger.fgckit.utils.DisplayUtils
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.story_list_item.view.*
 
 
@@ -23,18 +24,29 @@ class StoriesAdapter(private val stories : ArrayList<Story>, private val listenn
 
         val v = LayoutInflater.from(parent.context).inflate(R.layout.story_list_item, parent, false)
         return ViewHolder(v, listenner)
-
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         stories[position].coverUrl?.let {
 
-            val uri = Uri.parse(stories[position].coverUrl)
-            holder.coverImage.setImageURI(uri, null)
+            val ctx = holder.itemView.context
+            val storyThumbSizeDp = ctx.resources.getDimension(R.dimen.story_thumb_size).toInt()
+            val storyThumbSizePx = DisplayUtils.dpToPx(storyThumbSizeDp, ctx)
+            Picasso.get()
+                    .load(stories[position].coverUrl)
+                    .placeholder(R.drawable.red_rectangle)
+                    .resize(storyThumbSizePx, storyThumbSizePx)
+                    .centerCrop()
+                    .into(holder.coverImage)
         }
 
-        holder.storyName.text = stories[position].name
+        stories[position].storyAuthors[0]?.let {
+
+            holder.storyAuthor.text = it.firstName
+        }
+
+        holder.storyName.text = stories[position].storyName
         holder.pos = position
 
     }
@@ -43,8 +55,9 @@ class StoriesAdapter(private val stories : ArrayList<Story>, private val listenn
 
     class ViewHolder(v: View, var listenner: StoryClickListenner) : RecyclerView.ViewHolder(v), View.OnClickListener {
 
-        var coverImage : SimpleDraweeView = v.story_list_item_cover_image
+        var coverImage : ImageView = v.story_list_item_cover_image
         var storyName : TextView = v.story_list_item_name
+        var storyAuthor: TextView = v.story_list_item_author
 
         var pos: Int = -1
 
