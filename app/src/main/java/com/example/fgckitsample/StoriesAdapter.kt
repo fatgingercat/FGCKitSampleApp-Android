@@ -28,25 +28,25 @@ class StoriesAdapter(private val stories : ArrayList<Story>, private val listenn
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        stories[position].coverUrl?.let {
+        stories[position].coverURL?.let {
 
             val ctx = holder.itemView.context
             val storyThumbSizeDp = ctx.resources.getDimension(R.dimen.story_thumb_size).toInt()
             val storyThumbSizePx = DisplayUtils.dpToPx(storyThumbSizeDp, ctx)
             Picasso.get()
-                    .load(stories[position].coverUrl)
+                    .load(stories[position].coverURL)
                     .placeholder(R.drawable.red_rectangle)
                     .resize(storyThumbSizePx, storyThumbSizePx)
                     .centerCrop()
                     .into(holder.coverImage)
         }
 
-        stories[position].storyAuthors[0]?.let {
+        stories[position].storyOwners[0]?.let {
 
             holder.storyAuthor.text = it.firstName
         }
 
-        holder.storyName.text = stories[position].storyName
+        holder.storyName.text = stories[position].name
         holder.pos = position
 
     }
